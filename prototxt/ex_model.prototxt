@@ -1,0 +1,118 @@
+name: "MNISTConvNet"
+# train input layer
+layer{
+name:"mnist_data"
+type:"Data"
+transform_param {
+scale: 0.00390625
+}
+include:{phase:TRAIN}
+top:"data" # output 
+top:"label" # output
+data_param{
+source: "./detectors/global2D/detection/data/mnist/mnist_train_lmdb"
+backend:LMDB
+batch_size: 64
+}
+}
+
+# test input layer
+layer{
+name:"mnist_data"
+type:"Data"
+transform_param {
+scale: 0.00390625
+}
+include:{phase:TEST}
+top:"data" # output 
+top:"label" # output
+data_param{
+source: "./detectors/global2D/detection/data/mnist/mnist_test_lmdb"
+backend:LMDB
+batch_size:100
+}
+
+}
+
+layer {
+name:"conv1"
+type:"Convolution"
+param{lr_mult:1}
+param{lr_mult:2}
+convolution_param{
+num_output:20
+kernel_size:5
+stride:1
+weight_filler{type:"xavier"}
+bias_filler{type:"constant"}
+}
+bottom:"data"
+top:"conv1"
+}
+
+layer {
+name: "pool1"
+type: "Pooling"
+pooling_param {
+kernel_size:2
+stride: 2
+pool:MAX
+}
+bottom: "conv1"
+top: "pool1"
+}
+
+layer{
+name: "fc1"
+type:"InnerProduct"
+param {lr_mult:1}
+param {lr_mult:2}
+inner_product_param {
+num_output:500
+weight_filler{type:"xavier"}
+bias_filler{type:"constant"}
+}
+bottom:"pool1"
+top:"fc1"
+}
+
+layer {
+name:"relu1"
+type:"ReLU"
+bottom:"fc1"
+top:"fc1"
+}
+
+layer {
+name:"fc2"
+type:"InnerProduct"
+param {lr_mult:1}
+param {lr_mult:2}
+inner_product_param{
+num_output:10
+weight_filler{type:"xavier"}
+bias_filler{type:"constant"}
+}
+bottom:"fc1"
+top:"fc2"
+}
+
+layer{
+name:"loss"
+type:"SoftmaxWithLoss"
+bottom:"fc2"
+bottom:"label"
+}
+
+layer {
+name: "accuracy"
+type: "Accuracy"
+bottom: "fc2"
+bottom: "label"
+top: "accuracy"
+include {
+  phase: TEST
+}
+}
+
+
