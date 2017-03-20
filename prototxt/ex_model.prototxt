@@ -10,7 +10,7 @@ include:{phase:TRAIN}
 top:"data" # output 
 top:"label" # output
 data_param{
-source: "./detectors/global2D/detection/data/mnist/mnist_train_lmdb"
+source: "/home/thushv89/gsoc2017/caffe-cpp-example/data/mnist/mnist_train_lmdb"
 backend:LMDB
 batch_size: 64
 }
@@ -27,7 +27,7 @@ include:{phase:TEST}
 top:"data" # output 
 top:"label" # output
 data_param{
-source: "./detectors/global2D/detection/data/mnist/mnist_test_lmdb"
+source: "/home/thushv89/gsoc2017/caffe-cpp-example/data/mnist/mnist_test_lmdb"
 backend:LMDB
 batch_size:100
 }

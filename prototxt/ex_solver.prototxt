@@ -1,5 +1,5 @@
 # The train/test net protocol buffer definition
-net: "./detectors/global2D/detection/prototxt/ex_model.prototxt"
+net: "/home/thushv89/gsoc2017/caffe-cpp-example/prototxt/ex_model.prototxt"
 # test_iter specifies how many forward passes the test should carry out.
 # since test_batch_size = 100 and test set has 10000 images, test_iter = 100
 test_iter: 100
@@ -25,7 +25,7 @@ max_iter: 10000
 
 # snapshot intermediate results
 snapshot: 5000
-snapshot_prefix: "./detectors/global2D/detection/snapshots/"
+snapshot_prefix: "/home/thushv89/gsoc2017/caffe-cpp-example/snapshots/"
 
 # solver mode: CPU or GPU
 solver_mode: CPU
