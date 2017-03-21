@@ -3,7 +3,7 @@ cmake_minimum_required( VERSION 2.8 )
 # +-----------------------------------------------------------------------------
 # | Basic settings
 # +-----------------------------------------------------------------------------
-project( "CafeExample" )
+project( "CaffeExample" )
 
 # Set output directories for libraries and executables
 set( BASE_DIR ${CMAKE_SOURCE_DIR} )
@@ -27,12 +27,10 @@ find_package( Caffe REQUIRED )
 
 # Use local include and library directories
 include_directories(
-    ${BASE_DIR}/src
-    ${Caffe_INCLUDE_DIRS}
+    ${BASE_DIR}/include
     ${Caffe_LIBRARIES}
-
-
 )
+
 link_directories(
     ${BASE_DIR}/lib
 )

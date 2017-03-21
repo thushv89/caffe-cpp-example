@@ -44,13 +44,14 @@ using std::string;
     {
 
         public:
-          ODCNNTrainer(string&, string&,string&);
+          ODCNNTrainer(string&, string&,string&, string&);
 
           int train();
             int test();
 
         private:
-            string solverFile;
-            string trainDataDir;
-            string testDataDir;
+          string solverFile;
+          string trainDataDir;
+          string testDataDir;
+          string snapshotDir;
     };

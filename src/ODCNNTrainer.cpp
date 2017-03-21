@@ -63,12 +63,13 @@ DEFINE_string(sighup_effect, "snapshot",
                       "snapshot, stop or none.");
 
 
-  ODCNNTrainer :: ODCNNTrainer(string &solverfile, string &traindatadir, string &testdatadir):
-          solverFile("./prototxt/ex_solver.prototxt"), trainDataDir("./data/mnist/mnist_train_lmdb"), testDataDir("./data/mnist/mnist_test_lmdb"){
+  ODCNNTrainer :: ODCNNTrainer(string &solverfile, string &traindatadir, string &testdatadir, string &snapshotdir):
+          solverFile(""), trainDataDir(""), testDataDir(""), snapshotDir(""){
     Caffe::set_mode(Caffe::CPU);
     solverFile = solverfile;
     trainDataDir = traindatadir;
     testDataDir = testdatadir;
+    snapshotDir = snapshotdir;
   }
 
 
